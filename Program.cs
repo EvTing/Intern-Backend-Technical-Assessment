@@ -16,8 +16,13 @@ class Program
 
         manager.RemoveItem("Apple");
 
-        // Part Three: Introduce a Fruit class and use the ItemManager<Fruit> to add a few fruits and print them on the console.
-        // TODO: Implement this part three.
+        ItemManager<Fruit> fruitManager = new ItemManager<Fruit>();
+
+        fruitManager.AddItem(new Fruit("Papaya"));
+        fruitManager.AddItem(new Fruit("Grapes"));
+        fruitManager.AddItem(new Fruit("Watermelon"));
+
+        fruitManager.PrintAllItems();
 
         // Part Four (Bonus): Implement an interface IItemManager and make ItemManager implement it.
         // TODO: Implement this part four.
@@ -50,6 +55,22 @@ public class ItemManager
     public void ClearAllItems()
     {
         items.Clear();
+    }
+}
+
+public class Fruit
+{
+    public string Name {get;set;}
+
+    public Fruit(string name)
+    {
+        Name=name;
+    }
+
+    public override string ToString()
+    {
+        return Name;
+
     }
 }
 
