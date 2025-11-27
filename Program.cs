@@ -1,6 +1,20 @@
 using System;
 using System.Collections.Generic;
 
+public interface IItemManager{
+    void AddItem(string item);
+    void RemoveItem(string item);
+    void PrintAllItems();
+    void ClearAllItems();
+}
+
+public interface IItemManager<T>{
+    void AddItem(T item);
+    void RemoveItem(T item);
+    void PrintAllItems();
+    void ClearAllItems();
+}
+
 class Program
 {
     static void Main(string[] args)
@@ -23,13 +37,10 @@ class Program
         fruitManager.AddItem(new Fruit("Watermelon"));
 
         fruitManager.PrintAllItems();
-
-        // Part Four (Bonus): Implement an interface IItemManager and make ItemManager implement it.
-        // TODO: Implement this part four.
     }
 }
 
-public class ItemManager
+public class ItemManager:IItemManager
 {
     private List<string> items = new List<string>();
 
@@ -74,7 +85,7 @@ public class Fruit
     }
 }
 
-public class ItemManager<T>
+public class ItemManager<T>:IItemManager<T>
 {
     private List<T> items = new List<T>();
 
@@ -83,6 +94,11 @@ public class ItemManager<T>
         items.Add(item);
     }
 
+    public void RemoveItem(T item)
+    {
+        items.Remove(item);
+    }
+    
     public void PrintAllItems()
     {
         foreach (var item in items)
